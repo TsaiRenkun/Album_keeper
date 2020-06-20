@@ -5,6 +5,8 @@ import {
   DELETE_PHOTO,
   DELETE_PHOTOS,
   SET_LOADING,
+  CLEAR_FILTER,
+  FILTER_PHOTO,
 } from "../types";
 
 export default (state, action) => {
@@ -13,12 +15,25 @@ export default (state, action) => {
       return {
         ...state,
         photos: action.payload,
-        loading: false
+        loading: false,
+      };
+    case FILTER_PHOTO:
+      return {
+        ...state,
+        filtered: state.photos.filter((photo) => {
+          const regex = new RegExp(`${action.payload}`, "gi");
+          return photo.album.match(regex) || photo.name.match(regex);
+        }),
       };
     case SET_LOADING:
       return {
         ...state,
         loading: true,
+      };
+    case CLEAR_FILTER:
+      return {
+        ...state,
+        filtered: null,
       };
     default:
       return state;

@@ -10,12 +10,15 @@ import {
   DELETE_PHOTO,
   DELETE_PHOTOS,
   SET_LOADING,
+  CLEAR_FILTER,
+  FILTER_PHOTO,
 } from "../types";
 
 const PhotoState = (props) => {
   const initialState = {
     photos: [],
     loading: false,
+    filtered: null,
   };
 
   const [state, dispatch] = useReducer(PhotoReducer, initialState);
@@ -24,45 +27,48 @@ const PhotoState = (props) => {
   const healthCheck = async (text) => {
     setLoading();
 
-    const res = await axios.get(
-      `/`
-    );
+    const res = await axios.get(`/`);
 
-    console.log(res, "FIRST TRY")
-
+    console.log(res, "FIRST TRY");
   };
 
-   //LIST PHOTOS
-   const photoList = async (limit) => {
+  //LIST PHOTOS
+  const photoList = async (limit) => {
     setLoading();
 
-    const res = await axios.post(
-      `./photos/list`, {skip: 0, limit: 5}
-    );
+    const res = await axios.post(`./photos/list`, { skip: 0, limit: 5 });
 
-    console.log(res.data.documents, "SEONDARY TRY GET LIST")
+    console.log(res.data.documents, "SEONDARY TRY GET LIST");
 
     dispatch({
       type: GET_PHOTOS,
       payload: res.data.documents,
     });
-
   };
 
-
+  //Filter Photos
+  const filterPhoto = (text) => {
+    dispatch({ type: FILTER_PHOTO, payload: text });
+  };
+  // Clear photos
+  const clearFilter = () => {
+    dispatch({ type: CLEAR_FILTER });
+  };
 
   //Set Loading
   const setLoading = () => dispatch({ type: SET_LOADING });
-
 
   return (
     <PhotoContext.Provider
       value={{
         photos: state.photos,
         loading: state.loading,
+        filtered: state.filtered,
         healthCheck,
         photoList,
         setLoading,
+        clearFilter,
+        filterPhoto,
       }}
     >
       {props.children}

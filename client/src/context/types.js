@@ -7,4 +7,5 @@ export const UPLOAD_PHOTOS = 'UPLOAD_PHOTOS';
 export const DELETE_PHOTO = 'DELETE_PHOTO';
 export const DELETE_PHOTOS = 'DELETE_PHOTOS';
 
-
+export const FILTER_PHOTO = 'FILTER_PHOTO';
+export const CLEAR_FILTER = 'CLEAR_FILTER';
