@@ -7,6 +7,8 @@ const Home = () => {
 
   useEffect(() => {
     photoContext.healthCheck();
+    photoContext.photoList();
+
     //eslint-disable-next-line
   }, []);
 

@@ -14,11 +14,8 @@ import {
 
 const PhotoState = (props) => {
   const initialState = {
-    users: [],
-    user: {},
-    repos: [],
+    photos: [],
     loading: false,
-    message : null,
   };
 
   const [state, dispatch] = useReducer(PhotoReducer, initialState);
@@ -35,6 +32,25 @@ const PhotoState = (props) => {
 
   };
 
+   //LIST PHOTOS
+   const photoList = async (limit) => {
+    setLoading();
+
+    const res = await axios.post(
+      `http://localhost:8888/photos/list`, {skip: 0, limit: 5}
+    );
+
+    console.log(res.data.documents, "SEONDARY TRY GET LIST")
+
+    dispatch({
+      type: GET_PHOTOS,
+      payload: res.data.documents,
+    });
+
+  };
+
+
+
   //Set Loading
   const setLoading = () => dispatch({ type: SET_LOADING });
 
@@ -46,6 +62,7 @@ const PhotoState = (props) => {
         user: state.user,
         repos: state.repos,
         healthCheck,
+        photoList,
         setLoading,
       }}
     >
