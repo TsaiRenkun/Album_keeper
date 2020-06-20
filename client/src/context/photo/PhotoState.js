@@ -29,16 +29,13 @@ const PhotoState = (props) => {
 
     const res = await axios.get(`/`);
 
-    console.log(res, "FIRST TRY");
   };
 
   //LIST PHOTOS
   const photoList = async (limit) => {
     setLoading();
 
-    const res = await axios.post(`./photos/list`, { skip: 0, limit: 5 });
-
-    console.log(res.data.documents, "SEONDARY TRY GET LIST");
+    const res = await axios.post(`./photos/list`, { skip: 0, limit: 100 });
 
     dispatch({
       type: GET_PHOTOS,

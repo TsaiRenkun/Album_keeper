@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const PhotoItem = ({ photo: { id, album, name, path, raw } }) => {
+    console.log(raw)
     const newRaw = raw.split('').splice(7).join('')
+
   return (
     <div className="card text-center">
       <img

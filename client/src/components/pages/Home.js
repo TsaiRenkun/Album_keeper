@@ -11,7 +11,7 @@ const Home = () => {
     photoContext.photoList();
 
     //eslint-disable-next-line
-  }, []);
+    }, []);
 
   return (
     <div>
