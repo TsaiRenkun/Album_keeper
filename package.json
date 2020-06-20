@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon || true",
-    "fix": "standard --fix || true"
+    "start": "node index.js",
+    "fix": "standard --fix || true",
+    "server": "nodemon index.js",
+    "client": "npm start --prefix client",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -29,6 +33,7 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
-    "standard": "^14.3.4"
+    "standard": "^14.3.4",
+    "concurrently": "^5.2.0"
   }
 }
