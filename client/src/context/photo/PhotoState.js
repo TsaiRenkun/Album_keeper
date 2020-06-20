@@ -25,7 +25,7 @@ const PhotoState = (props) => {
     setLoading();
 
     const res = await axios.get(
-      `http://localhost:8888/health`
+      `/`
     );
 
     console.log(res, "FIRST TRY")
@@ -37,7 +37,7 @@ const PhotoState = (props) => {
     setLoading();
 
     const res = await axios.post(
-      `http://localhost:8888/photos/list`, {skip: 0, limit: 5}
+      `./photos/list`, {skip: 0, limit: 5}
     );
 
     console.log(res.data.documents, "SEONDARY TRY GET LIST")
@@ -58,9 +58,8 @@ const PhotoState = (props) => {
   return (
     <PhotoContext.Provider
       value={{
-        users: state.users,
-        user: state.user,
-        repos: state.repos,
+        photos: state.photos,
+        loading: state.loading,
         healthCheck,
         photoList,
         setLoading,

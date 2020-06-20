@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import PhotoContext from '../../context/photo/photoContext';
+import Photo from '../photo/photos'
 
 const Home = () => {
 
@@ -14,7 +15,7 @@ const Home = () => {
 
   return (
     <div className="grid-2">
-        HOME PAGE
+        <Photo/>
     </div>
   );
 };
