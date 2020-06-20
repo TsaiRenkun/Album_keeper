@@ -1,11 +1,14 @@
 import React, { useContext, useEffect } from "react";
+import PhotoContext from '../../context/photo/photoContext';
 
 const Home = () => {
 
-//   useEffect(() => {
-//     authContext.loadUser();
-//     //eslint-disable-next-line
-//   }, []);
+  const photoContext = useContext(PhotoContext)
+
+  useEffect(() => {
+    photoContext.healthCheck();
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <div className="grid-2">
