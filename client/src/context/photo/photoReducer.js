@@ -2,6 +2,7 @@ import {
   HEALTH_CHECK,
   GET_PHOTOS,
   UPLOAD_PHOTOS,
+  UPLOAD_LIST,
   DELETE_PHOTO,
   DELETE_PHOTOS,
   SET_LOADING,
@@ -39,6 +40,12 @@ export default (state, action) => {
         photos: [action.payload, ...state.photos],
         loading:false
       };
+    case UPLOAD_LIST:
+      return{
+        ...state,
+        uploaded: [action.payload, ...state.uploaded],
+        loading:false
+      }
     case SET_LOADING:
       return {
         ...state,

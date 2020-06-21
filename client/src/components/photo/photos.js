@@ -17,9 +17,6 @@ const Photo = () => {
     //eslint-disable-next-line
   }, []);
 
-  console.log(photos);
-  console.log(photos.length)
-
   if (loading) {
     return <Spinner />;
   } else {

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import PhotoContext from "../../context/photo/photoContext";
 
 const PhotoItem = ({ photo: { id, album, name, path, raw } }) => {
-  console.log(raw);
+  
   const newRaw = raw.split("").splice(7).join("");
 
   const photoContext = useContext(PhotoContext);

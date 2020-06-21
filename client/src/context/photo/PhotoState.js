@@ -12,6 +12,7 @@ import {
   SET_LOADING,
   CLEAR_FILTER,
   FILTER_PHOTO,
+  UPLOAD_LIST,
 } from "../types";
 
 const PhotoState = (props) => {
@@ -19,6 +20,7 @@ const PhotoState = (props) => {
     photos: [],
     loading: false,
     filtered: null,
+    uploaded: [],
   };
 
   const [state, dispatch] = useReducer(PhotoReducer, initialState);
@@ -41,6 +43,7 @@ const PhotoState = (props) => {
       type: GET_PHOTOS,
       payload: res.data.documents,
     });
+
   };
 
   //DELETE PHOTO
@@ -61,15 +64,23 @@ const PhotoState = (props) => {
         'Context-Type': 'application/json'
       }
     }
-
     try {
       const res = await axios.post('', photo, config);
 
       dispatch({ type: UPLOAD_PHOTOS, payload: res.data });
     } catch (err) {
-     
+
     }
-    
+  };
+
+  //UPLOAD PHONE
+  const uploadList = async (document) => {
+
+    console.log(document.files)
+
+    state.uploaded = [document, ...state.uploaded]
+    console.log(state.uploaded)
+      // dispatch({ type: UPLOAD_LIST , payload: document });
   };
   
 
@@ -91,6 +102,7 @@ const PhotoState = (props) => {
         photos: state.photos,
         loading: state.loading,
         filtered: state.filtered,
+        uploaded: state.uploaded,
         healthCheck,
         photoList,
         setLoading,
@@ -98,6 +110,7 @@ const PhotoState = (props) => {
         filterPhoto,
         deletePhoto,
         addPhoto,
+        uploadList,
       }}
     >
       {props.children}
