@@ -43,6 +43,36 @@ const PhotoState = (props) => {
     });
   };
 
+  //DELETE PHOTO
+  const deletePhoto = async (album, fileName, id) => {
+    try {
+
+      const res = await axios.delete(`./photos/${album}/${fileName}`);
+
+      dispatch({ type: DELETE_PHOTO, payload: id });
+    } catch (err) {
+      
+    }
+  }
+  //ADD PHOTO
+  const addPhoto = async (photo) => {
+    const config = {
+      headers: {
+        'Context-Type': 'application/json'
+      }
+    }
+
+    try {
+      const res = await axios.post('', photo, config);
+
+      dispatch({ type: UPLOAD_PHOTOS, payload: res.data });
+    } catch (err) {
+     
+    }
+    
+  };
+  
+
   //Filter Photos
   const filterPhoto = (text) => {
     dispatch({ type: FILTER_PHOTO, payload: text });
@@ -66,6 +96,8 @@ const PhotoState = (props) => {
         setLoading,
         clearFilter,
         filterPhoto,
+        deletePhoto,
+        addPhoto,
       }}
     >
       {props.children}
