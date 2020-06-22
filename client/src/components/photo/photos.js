@@ -20,37 +20,50 @@ const Photo = () => {
   if (loading) {
     return <Spinner />;
   } else {
-
     //Get Current photo
-    const indexOfLastPhoto = currentPage * photoPerPage;
-    const indexOfFirstPhoto = indexOfLastPhoto - photoPerPage;
-    const currentPhoto = photos.slice(indexOfFirstPhoto, indexOfLastPhoto);
+
+    if (filtered !== null) {
+      const indexOfLastPhoto = currentPage * photoPerPage;
+      const indexOfFirstPhoto = indexOfLastPhoto - photoPerPage;
+      var currentFiltered = filtered.slice(indexOfFirstPhoto, indexOfLastPhoto);
+    } else {
+      const indexOfLastPhoto = currentPage * photoPerPage;
+      const indexOfFirstPhoto = indexOfLastPhoto - photoPerPage;
+      var currentPhoto = photos.slice(indexOfFirstPhoto, indexOfLastPhoto);
+    }
     //Change page
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
-    console.log(photos)
+    console.log(photos);
     return (
       <Fragment>
         {filtered !== null ? (
-          <div style={photoStyle}>
-            {currentPhoto.map((photo) => (
-              <PhotoItem key={photo.id} photo={photo} />
-            ))}
+          <div>
+            <div style={photoStyle}>
+              {currentFiltered.map((photo) => (
+                <PhotoItem key={photo.id} photo={photo} />
+              ))}
+            </div>
+            <Pagination
+              photoPerPage={photoPerPage}
+              totalPhotos={filtered.length}
+              paginate={paginate}
+            />
           </div>
         ) : (
-          <div style={photoStyle}>
-            {currentPhoto.map((photo,i) => (
-              <PhotoItem key={photo.id} photo={photo} />
-            ))}
-      
+          <div>
+            <div style={photoStyle}>
+              {currentPhoto.map((photo) => (
+                <PhotoItem key={photo.id} photo={photo} />
+              ))}
+            </div>
+            <Pagination
+              photoPerPage={photoPerPage}
+              totalPhotos={photos.length}
+              paginate={paginate}
+            />
           </div>
-          
         )}
-        <Pagination
-          photoPerPage={photoPerPage}
-          totalPhotos={photos.length}
-          paginate={paginate}
-        />
       </Fragment>
     );
   }

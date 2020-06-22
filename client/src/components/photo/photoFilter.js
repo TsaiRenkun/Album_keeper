@@ -15,6 +15,7 @@ const PhotoFilter = () => {
 
   const onChange = e => {
     if (text.current.value !== "") {
+      console.log(e.target.value)
       filterPhoto(e.target.value);
     } else {
       clearFilter();

@@ -94,7 +94,9 @@ const PhotoState = (props) => {
 
   //Filter Photos
   const filterPhoto = (text) => {
+    console.log(text, "inside state")
     dispatch({ type: FILTER_PHOTO, payload: text });
+
   };
   // Clear photos
   const clearFilter = () => {
