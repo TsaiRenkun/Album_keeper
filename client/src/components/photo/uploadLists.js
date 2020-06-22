@@ -14,7 +14,10 @@ const UploadLists = (list) => {
 
   const onSubmitone = (e) => {
     e.preventDefault();
-    uploadList(e.target.document.files[0]);
+    const files = e.target.document.files
+    for(let i = 0; i < files.length; i++){
+      uploadList(files[i]);
+    }
     clearForm();
   };
 

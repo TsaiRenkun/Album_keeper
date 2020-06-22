@@ -30,7 +30,7 @@ export default (state, action) => {
       return{
         ...state,
         photos: state.photos.filter(
-          (photo) => photo.id !== action.payload
+          (photo) => photo.name !== action.payload
         ),
         loading:false
       }

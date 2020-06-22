@@ -28,12 +28,12 @@ const Photo = () => {
     //Change page
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
-    
+    console.log(photos)
     return (
       <Fragment>
         {filtered !== null ? (
           <div style={photoStyle}>
-            {currentPhoto.map((photo,i) => (
+            {currentPhoto.map((photo) => (
               <PhotoItem key={photo.id} photo={photo} />
             ))}
           </div>

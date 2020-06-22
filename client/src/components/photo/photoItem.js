@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import PhotoContext from "../../context/photo/photoContext";
 
 const PhotoItem = ({ photo: { id, album, name, path, raw } }) => {
+
+  console.log(id)
   
   const newRaw = raw.split("").splice(7).join("");
 
@@ -12,7 +14,7 @@ const PhotoItem = ({ photo: { id, album, name, path, raw } }) => {
   const { deletePhoto } = photoContext;
 
   const onDelete = () => {
-    deletePhoto(album, name, id);
+    deletePhoto(album, name);
   };
 
   return (

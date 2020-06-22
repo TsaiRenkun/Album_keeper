@@ -30,7 +30,6 @@ const PhotoState = (props) => {
     setLoading();
 
     const res = await axios.get(`/`);
-
   };
 
   //LIST PHOTOS
@@ -43,56 +42,55 @@ const PhotoState = (props) => {
       type: GET_PHOTOS,
       payload: res.data.documents,
     });
-
   };
 
   //DELETE PHOTO
-  const deletePhoto = async (album, fileName, id) => {
+  const deletePhoto = async (album, fileName) => {
     try {
-
       const res = await axios.delete(`./photos/${album}/${fileName}`);
 
-      dispatch({ type: DELETE_PHOTO, payload: id });
-    } catch (err) {
-      
-    }
-  }
+      dispatch({ type: DELETE_PHOTO, payload: fileName });
+    } catch (err) {}
+  };
   //ADD PHOTO
   const addPhoto = async (album, uploaded) => {
+    // const data = new FormData();
+    const data = [];
+    var formData = new FormData();
+    formData.set("album", `${album}`);
 
-    const data = new FormData();
+    for (let i = 0; i < uploaded.length; i++) {
 
-    console.log(album);
-    console.log(uploaded);
+      formData.append("documents", uploaded[i]);
 
-    data.append('album', album);
-    data.append('FileName', uploaded);
-    
-    console.log(data)
+    }
 
-  
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data' 
+      }
+    }
     try {
-    //  const res = axios({
-    //     method: "PUT",
-    //     url: "http://localhost:8888/photos",
-    //     data: data,
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data;'
-    //     }
-    //   })
+    
+      const res = await axios.put("http://localhost:8888/photos", formData, config);
+      console.log(res.data.data);
 
-    //   dispatch({ type: UPLOAD_PHOTOS, payload: res.data });
+      let update = res.data.data;
 
-    } catch (err) {
+      for(let i = 0; i < update.length; i++){
 
+        dispatch({ type: UPLOAD_PHOTOS, payload: update[i]});
+      }
+
+    } catch (error) {
+      console.log(error);
     }
   };
 
   //UPLOAD PHONE
   const uploadList = async (document) => {
-      dispatch({ type: UPLOAD_LIST , payload: document});
+    dispatch({ type: UPLOAD_LIST, payload: document });
   };
-  
 
   //Filter Photos
   const filterPhoto = (text) => {

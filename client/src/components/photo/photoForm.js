@@ -22,7 +22,6 @@ const ContactForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target);
     addPhoto(album, uploaded);
     clearForm();
   };
@@ -48,11 +47,13 @@ const ContactForm = () => {
             <option value="Other" >Other</option>
           </select>
         </label>
-        <input
+        {uploaded.length !== 0 ? (<input
           type="submit"
           value="Add Photo"
           className="btn btn-primary btn-block"
-        />
+        />) : (
+          <div>Please Select you files</div>
+        )}
       </form>
     </div>
   );
