@@ -2,6 +2,12 @@
 
 Front-end development 
 
+## Read Documentation
+
+![Standard Js](https://cdn.rawgit.com/feross/standard/master/badge.svg)
+[https://documenter.getpostman.com/view/10417219/Szzkcctu?version=latest](https://documenter.getpostman.com/view/10417219/Szzkcctu?version=latest)
+
+
 ## How to Start?
 
 ```
@@ -13,11 +19,10 @@ npm install
 npm run dev
 
 ```
-
-## Read Documentation
-
-![Standard Js](https://cdn.rawgit.com/feross/standard/master/badge.svg)
-[https://documenter.getpostman.com/view/10417219/Szzkcctu?version=latest](https://documenter.getpostman.com/view/10417219/Szzkcctu?version=latest)
+## How to use?
+1. The form, you have to select the files before you are able to add the photos to the DB.
+2. Filter, you can type the image name or album you want to search.
+3. Delete, it is on the bottom of every image. 
 
 ## Task
 1. [x] upload image files 
