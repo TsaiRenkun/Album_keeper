@@ -58,16 +58,31 @@ const PhotoState = (props) => {
     }
   }
   //ADD PHOTO
-  const addPhoto = async (photo) => {
-    const config = {
-      headers: {
-        'Context-Type': 'application/json'
-      }
-    }
-    try {
-      const res = await axios.post('', photo, config);
+  const addPhoto = async (album, uploaded) => {
 
-      dispatch({ type: UPLOAD_PHOTOS, payload: res.data });
+    const data = new FormData();
+
+    console.log(album);
+    console.log(uploaded);
+
+    data.append('album', album);
+    data.append('FileName', uploaded);
+    
+    console.log(data)
+
+  
+    try {
+    //  const res = axios({
+    //     method: "PUT",
+    //     url: "http://localhost:8888/photos",
+    //     data: data,
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data;'
+    //     }
+    //   })
+
+    //   dispatch({ type: UPLOAD_PHOTOS, payload: res.data });
+
     } catch (err) {
 
     }
@@ -75,12 +90,7 @@ const PhotoState = (props) => {
 
   //UPLOAD PHONE
   const uploadList = async (document) => {
-
-    console.log(document.files)
-
-    state.uploaded = [document, ...state.uploaded]
-    console.log(state.uploaded)
-      // dispatch({ type: UPLOAD_LIST , payload: document });
+      dispatch({ type: UPLOAD_LIST , payload: document});
   };
   
 

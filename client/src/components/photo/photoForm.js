@@ -22,12 +22,14 @@ const ContactForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(e.target);
+    addPhoto(album, uploaded);
     clearForm();
   };
 
   const onSubmitone = (e) => {
     e.preventDefault();
-    uploadList(e.target.document.files[0].name);
+    uploadList(e.target.document.files[0]);
     clearForm();
   };
 
@@ -36,7 +38,7 @@ const ContactForm = () => {
       document: null,
     });
   };
-  const { album, document } = photo;
+  const { album } = photo;
 
   return (
     <div>
@@ -44,12 +46,12 @@ const ContactForm = () => {
         <h2 className="text=primary">Add Photos</h2>
         <label>
           Pick you Album:
-          <select name="album" value={album} onChange={onChange}>
-            <option value="Personal">Personal</option>
-            <option value="Food">Food</option>
-            <option value="Nature">Nature</option>
-            <option value="Travel">Travel</option>
-            <option value="Other">Other</option>
+          <select name="album" value= {album} onChange={onChange}>
+            <option value="Personal" >Personal</option>
+            <option value="Food" >Food</option>
+            <option value="Nature" >Nature</option>
+            <option value="Travel" >Travel</option>
+            <option value="Other" >Other</option>
           </select>
         </label>
         <input
@@ -61,9 +63,9 @@ const ContactForm = () => {
       <div className="container">
         <div className="row">
           <form onSubmit={onSubmitone}>
-            <h3>React Multiple File Upload</h3>
+            <h3>Choose Your Multiple File Upload</h3>
             <div className="form-group">
-              <input type="file" name = "document" onChange={onChange} multiple />
+              <input type="file" name="document" accept="image/*" onChange={onChange} multiple required />
             </div>
             <div className="form-group">
               <button className="btn btn-primary" type="submit">
