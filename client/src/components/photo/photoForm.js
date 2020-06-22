@@ -27,12 +27,6 @@ const ContactForm = () => {
     clearForm();
   };
 
-  const onSubmitone = (e) => {
-    e.preventDefault();
-    uploadList(e.target.document.files[0]);
-    clearForm();
-  };
-
   const clearForm = () => {
     setPhoto({
       document: null,
@@ -60,21 +54,6 @@ const ContactForm = () => {
           className="btn btn-primary btn-block"
         />
       </form>
-      <div className="container">
-        <div className="row">
-          <form onSubmit={onSubmitone}>
-            <h3>Choose Your Multiple File Upload</h3>
-            <div className="form-group">
-              <input type="file" name="document" accept="image/*" onChange={onChange} multiple required />
-            </div>
-            <div className="form-group">
-              <button className="btn btn-primary" type="submit">
-                Upload
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
     </div>
   );
 };
