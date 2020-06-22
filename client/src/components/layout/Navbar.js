@@ -33,7 +33,7 @@ Navbar.propTypes = {
 };
 
 Navbar.defaultProps = {
-  title: "Image Keeper",
+  title: "Album Keeper",
   icon: "fas fa-id-card-alt",
 };
 
