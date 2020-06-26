@@ -1,51 +1,50 @@
-import React, { useContext,useState } from "react";
-import PhotoContext from "../../context/photo/photoContext";
+import React, { useContext, useState } from 'react'
+import PhotoContext from '../../context/photo/photoContext'
 
 const UploadLists = (list) => {
+  const photoContext = useContext(PhotoContext)
 
-  const photoContext = useContext(PhotoContext);
-
-  const { addPhoto, uploaded, uploadList } = photoContext;
+  const { addPhoto, uploaded, uploadList } = photoContext
 
   const [photo, setPhoto] = useState({
-    album: "",
-    document: null,
-  });
+    album: '',
+    document: null
+  })
 
   const onSubmitone = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const files = e.target.document.files
-    for(let i = 0; i < files.length; i++){
-      uploadList(files[i]);
+    for (let i = 0; i < files.length; i++) {
+      uploadList(files[i])
     }
-    clearForm();
-  };
+    clearForm()
+  }
 
   const clearForm = () => {
     setPhoto({
-      document: null,
-    });
-  };
+      document: null
+    })
+  }
   const onChange = (e) => {
     setPhoto({
       ...photo,
-      [e.target.name]: e.target.value,
-    });
-  };
+      [e.target.name]: e.target.value
+    })
+  }
 
-    const photos = list.list
+  const photos = list.list
 
   return (
     <div>
-          <div className="container">
-        <div className="row">
+      <div className='container'>
+        <div className='row'>
           <form onSubmit={onSubmitone}>
             <h3>Choose Your Multiple File Upload</h3>
-            <div className="form-group">
-              <input type="file" name="document" accept="image/*" onChange={onChange} multiple required />
+            <div className='form-group'>
+              <input type='file' name='document' accept='image/*' onChange={onChange} multiple required />
             </div>
-            <div className="form-group">
-              <button className="btn btn-primary" type="submit">
+            <div className='form-group'>
+              <button className='btn btn-primary' type='submit'>
                 Upload
               </button>
             </div>
@@ -53,14 +52,14 @@ const UploadLists = (list) => {
         </div>
       </div>
       {photos.length !== 0
-          ? photos.map((photo, i) => (
-              <p key = {i}> {photo.name}</p>
-            ))
-          : <p>
+        ? photos.map((photo, i) => (
+          <p key={i}> {photo.name}</p>
+        ))
+        : <p>
             Upload a photo
-            </p>}
+          </p>}
     </div>
-  );
-};
+  )
+}
 
-export default UploadLists;
+export default UploadLists

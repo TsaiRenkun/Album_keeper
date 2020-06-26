@@ -1,42 +1,42 @@
-import React, { Fragment, useEffect, useContext, useState } from "react";
-import Spinner from "../layout/Spinner";
-import PhotoContext from "../../context/photo/photoContext";
-import PhotoItem from "./photoItem";
-import Pagination from "../pagination";
+import React, { Fragment, useEffect, useContext, useState } from 'react'
+import Spinner from '../layout/Spinner'
+import PhotoContext from '../../context/photo/photoContext'
+import PhotoItem from './photoItem'
+import Pagination from '../pagination'
 
 const Photo = () => {
-  const photoContext = useContext(PhotoContext);
+  const photoContext = useContext(PhotoContext)
 
-  const { photos, photoList, loading, filtered } = photoContext;
+  const { photos, photoList, loading, filtered } = photoContext
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [photoPerPage] = useState(12);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [photoPerPage] = useState(12)
 
   useEffect(() => {
-    photoList();
-    //eslint-disable-next-line
+    photoList()
+    // eslint-disable-next-line
   }, []);
 
   if (loading) {
-    return <Spinner />;
+    return <Spinner />
   } else {
-    //Get Current photo
+    // Get Current photo
 
     if (filtered !== null) {
-      const indexOfLastPhoto = currentPage * photoPerPage;
-      const indexOfFirstPhoto = indexOfLastPhoto - photoPerPage;
-      var currentFiltered = filtered.slice(indexOfFirstPhoto, indexOfLastPhoto);
+      const indexOfLastPhoto = currentPage * photoPerPage
+      const indexOfFirstPhoto = indexOfLastPhoto - photoPerPage
+      var currentFiltered = filtered.slice(indexOfFirstPhoto, indexOfLastPhoto)
     } else {
-      const indexOfLastPhoto = currentPage * photoPerPage;
-      const indexOfFirstPhoto = indexOfLastPhoto - photoPerPage;
-      var currentPhoto = photos.slice(indexOfFirstPhoto, indexOfLastPhoto);
+      const indexOfLastPhoto = currentPage * photoPerPage
+      const indexOfFirstPhoto = indexOfLastPhoto - photoPerPage
+      var currentPhoto = photos.slice(indexOfFirstPhoto, indexOfLastPhoto)
     }
-    //Change page
+    // Change page
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
-    console.log(photos);
+    const paginate = (pageNumber) => setCurrentPage(pageNumber)
+    console.log(photos)
     return (
-      <Fragment>
+      <>
         {filtered !== null ? (
           <div>
             <div style={photoStyle}>
@@ -64,15 +64,15 @@ const Photo = () => {
             />
           </div>
         )}
-      </Fragment>
-    );
+      </>
+    )
   }
-};
+}
 
 const photoStyle = {
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gridGap: "1rem",
-};
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, 1fr)',
+  gridGap: '1rem'
+}
 
-export default Photo;
+export default Photo

@@ -7,8 +7,8 @@ import {
   DELETE_PHOTOS,
   SET_LOADING,
   CLEAR_FILTER,
-  FILTER_PHOTO,
-} from "../types";
+  FILTER_PHOTO
+} from '../types'
 
 export default (state, action) => {
   switch (action.type) {
@@ -16,47 +16,47 @@ export default (state, action) => {
       return {
         ...state,
         photos: action.payload,
-        loading: false,
-      };
+        loading: false
+      }
     case FILTER_PHOTO:
       return {
         ...state,
         filtered: state.photos.filter((photo) => {
-          const regex = new RegExp(`${action.payload}`, "gi");
-          return photo.album.match(regex) || photo.name.match(regex);
-        }),
-      };
+          const regex = new RegExp(`${action.payload}`, 'gi')
+          return photo.album.match(regex) || photo.name.match(regex)
+        })
+      }
     case DELETE_PHOTO:
-      return{
+      return {
         ...state,
         photos: state.photos.filter(
           (photo) => photo.name !== action.payload
         ),
-        loading:false
+        loading: false
       }
     case UPLOAD_PHOTOS:
       return {
         ...state,
         photos: [action.payload, ...state.photos],
-        loading:false
-      };
+        loading: false
+      }
     case UPLOAD_LIST:
-      return{
+      return {
         ...state,
         uploaded: [action.payload, ...state.uploaded],
-        loading:false
+        loading: false
       }
     case SET_LOADING:
       return {
         ...state,
-        loading: true,
-      };
+        loading: true
+      }
     case CLEAR_FILTER:
       return {
         ...state,
-        filtered: null,
-      };
+        filtered: null
+      }
     default:
-      return state;
+      return state
   }
-};
+}

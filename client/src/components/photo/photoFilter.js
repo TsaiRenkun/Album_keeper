@@ -1,37 +1,37 @@
-import React, { useContext, useRef, useEffect } from "react";
-import PhotoContext from "../../context/photo/photoContext";
+import React, { useContext, useRef, useEffect } from 'react'
+import PhotoContext from '../../context/photo/photoContext'
 
 const PhotoFilter = () => {
-  const photoContext = useContext(PhotoContext);
-  const text = useRef("");
+  const photoContext = useContext(PhotoContext)
+  const text = useRef('')
 
-  const { filterPhoto, clearFilter, filtered } = photoContext;
+  const { filterPhoto, clearFilter, filtered } = photoContext
 
   useEffect(() => {
     if (filtered === null) {
-      text.current.value = "";
+      text.current.value = ''
     }
-  });
+  })
 
   const onChange = e => {
-    if (text.current.value !== "") {
+    if (text.current.value !== '') {
       console.log(e.target.value)
-      filterPhoto(e.target.value);
+      filterPhoto(e.target.value)
     } else {
-      clearFilter();
+      clearFilter()
     }
-  };
+  }
 
   return (
     <form>
       <input
         ref={text}
-        type="text"
-        placeholder="Filter Photos..."
+        type='text'
+        placeholder='Filter Photos...'
         onChange={onChange}
       />
     </form>
-  );
-};
+  )
+}
 
-export default PhotoFilter;
+export default PhotoFilter
